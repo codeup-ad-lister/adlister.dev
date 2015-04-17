@@ -6,5 +6,9 @@
 </head>
 <body>
     <h1>Create a New Ad!</h1>
+
+    <form action="index.php" method="POST">
+
+    </form>
 </body>
 </html>
