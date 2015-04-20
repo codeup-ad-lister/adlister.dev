@@ -38,7 +38,7 @@ require_once '../bootstrap.php';
     </div>
 
     <main class="container">
-    <h1>Welcome to Radlister!</h1>
+    <h1>Welcome to Rad-Lister!</h1>
     <h1><small>The rad way to post free, unlimited ads!</small></h1>
 
     </main>
