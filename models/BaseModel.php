@@ -2,7 +2,7 @@
 
 require_once '../bootstrap.php';
 
-class Model {
+class BaseModel {
 
     protected static $dbc;
     protected static $table;
@@ -73,50 +73,9 @@ class Model {
         }
     }
 
-    protected function insert()
-    {
+    protected function insert() {}
 
-        $table = static::$table;
-
-        $query = "INSERT INTO $table (first_name, last_name, username, password)
-                    VALUES (':first_name', ':last_name', ':username', ':password');";
-
-        $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':first_name', $this->first_name,  PDO::PARAM_STR);
-        $stmt->bindValue(':last_name',  $this->last_name,   PDO::PARAM_STR);
-        $stmt->bindValue(':username',   $this->username,    PDO::PARAM_STR);
-        $stmt->bindValue(':password',   $this->password,    PDO::PARAM_STR);
-        $stmt->execute();
-
-        // @TODO: After insert, add the id back to the attributes array so the object can properly reflect the id
-
-    }
-
-    protected function update()
-    {
-        $table = static::$table;
-
-        // @TODO: Ensure that update is properly handled with the id key
-        $query = "UPDATE $table SET
-                    first_name = :first_name,
-                    last_name = :last_name,
-                    email = :email,
-                    username = :username,
-                    password = :password
-                    WHERE id = :id";
-
-        // @TODO: Use prepared statements to ensure data security
-        $stmt = self::$dbc->prepare($query);
-        $stmt->bindValue(':first_name', $this->first_name,  PDO::PARAM_STR);
-        $stmt->bindValue(':last_name',  $this->last_name,   PDO::PARAM_STR);
-        $stmt->bindValue(':username',   $this->username,    PDO::PARAM_STR);
-        $stmt->bindValue(':email',      $this->email,       PDO::PARAM_STR);
-        $stmt->bindValue(':password',   $this->password,    PDO::PARAM_STR);
-        $stmt->bindValue(':id',         $this->id,          PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-
+    protected function update() {}
 
     /*
      * Find a record based on an id
@@ -155,7 +114,9 @@ class Model {
     {
         self::dbConnect();
 
-        $result = self::$dbc->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
+        $table = static::$table;
+
+        $result = self::$dbc->query("SELECT * FROM $table")->fetchAll(PDO::FETCH_ASSOC);
 
         $instance = null;
         if ($result)

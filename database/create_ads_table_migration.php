@@ -1,8 +1,8 @@
 <?php
 
-$dbc->exec('DROP TABLE IF EXISTS items');
+$dbc->exec('DROP TABLE IF EXISTS ads');
 
-$query = 'CREATE TABLE items (
+$query = 'CREATE TABLE ads (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     item VARCHAR(512) NOT NULL,
     price INT UNSIGNED NOT NULL,
