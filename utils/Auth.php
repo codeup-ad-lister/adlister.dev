@@ -16,6 +16,10 @@ class Auth
     {
         if($username == 'guest' && password_verify($password, self::$hash)) {
                 $_SESSION['LOGGED_IN_USER'] = $username;
+
+                $user = User::findUserByUsername($username);
+
+                $_SESSION['LOGGED_IN_USER_ID'] = $user['id'];
                 $message = "User $username logged in.";
                 Log::info($message);
                 return $message;

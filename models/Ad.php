@@ -16,6 +16,8 @@ class Ad extends BaseModel
         $stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
         $stmt->bindValue(':location', $this->location, PDO::PARAM_STR);
         $stmt->exectute();
+
+
     }
 
     protected function update()

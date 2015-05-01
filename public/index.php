@@ -41,6 +41,14 @@ require_once '../bootstrap.php';
     <h1>Welcome to Rad-Lister!</h1>
     <h1><small>The rad way to post free, unlimited ads!</small></h1>
 
+
+    <?php foreach($ads as $ad): ?>
+        <a href="ads.show.php"></a>
+    <?php endforeach; ?>
+
+
     </main>
+
+
 </body>
 </html>
